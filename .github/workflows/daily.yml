@@ -1,4 +1,4 @@
-name: Macro Tracker — Multi-Commit Daily
+name: Macro Tracker Daily
 
 on:
   schedule:
@@ -13,86 +13,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Cache pip
-        uses: actions/cache@v4
+
+      - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: pip-macro-v2-${{ hashFiles('requirements.txt') }}
+          key: pip-macro-${{ hashFiles('requirements.txt') }}
+
       - run: pip install -r requirements.txt
 
-      - name: Generate all data
+      - run: python report.py
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
-        run: |
-          python report.py
-          python - <<'EOF'
-          import yfinance as yf, json, datetime, os, requests
-          TODAY = str(datetime.date.today())
-          def tz(h):
-              if hasattr(h.index,'tz') and h.index.tz: h.index = h.index.tz_convert(None)
-              return h
-          os.makedirs('data', exist_ok=True)
-          # Commodities
-          comms={'GC=F':'Gold','SI=F':'Silver','CL=F':'Crude Oil','NG=F':'Nat Gas','ZC=F':'Corn','ZW=F':'Wheat','HG=F':'Copper'}
-          cd={}
-          for sym,name in comms.items():
-              try:
-                  h=tz(yf.Ticker(sym).history(period='3mo'))
-                  if h.empty: continue
-                  c,p,m=float(h['Close'].iloc[-1]),float(h['Close'].iloc[-2]),float(h['Close'].iloc[0])
-                  cd[sym]={'name':name,'price':round(c,2),'chg_1d':round((c-p)/p*100,2),'chg_3m':round((c-m)/m*100,2)}
-              except: pass
-          with open('data/commodities.json','w') as f: json.dump({'date':TODAY,'commodities':cd},f,indent=2)
-          lines=[f'# Commodities — {TODAY}','','| Commodity | Price | 1D | 3M |','|-----------|-------|----|----|']
-          for s,d in sorted(cd.items(),key=lambda x:x[1]['chg_1d'],reverse=True):
-              lines.append(f"| {d['name']} | ${d['price']:,.2f} | {d['chg_1d']:+.2f}% | {d['chg_3m']:+.2f}% |")
-          with open(f'reports/commodities_{TODAY}.md','w') as f: f.write('\n'.join(lines))
-          # FX
-          fx={'EURUSD=X':'EUR/USD','GBPUSD=X':'GBP/USD','JPY=X':'USD/JPY','AUDUSD=X':'AUD/USD','DX-Y.NYB':'DXY'}
-          fxd={}
-          for sym,name in fx.items():
-              try:
-                  h=tz(yf.Ticker(sym).history(period='1mo'))
-                  if h.empty: continue
-                  c,p=float(h['Close'].iloc[-1]),float(h['Close'].iloc[-2])
-                  fxd[sym]={'name':name,'price':round(c,4),'chg_1d':round((c-p)/p*100,2)}
-              except: pass
-          with open('data/currencies.json','w') as f: json.dump({'date':TODAY,'fx':fxd},f,indent=2)
-          # Global markets
-          indices={'^GSPC':'S&P 500','^DJI':'Dow Jones','^IXIC':'NASDAQ','^FTSE':'FTSE 100','^N225':'Nikkei','^GDAXI':'DAX','^HSI':'Hang Seng'}
-          gmd={}
-          for sym,name in indices.items():
-              try:
-                  h=tz(yf.Ticker(sym).history(period='5d'))
-                  if h.empty: continue
-                  c,p=float(h['Close'].iloc[-1]),float(h['Close'].iloc[-2])
-                  gmd[sym]={'name':name,'price':round(c,2),'chg_1d':round((c-p)/p*100,2)}
-              except: pass
-          with open('data/global_markets.json','w') as f: json.dump({'date':TODAY,'indices':gmd},f,indent=2)
-          lines=[f'# Global Markets — {TODAY}','','| Index | Price | 1D |','|-------|-------|-----|']
-          for s,d in gmd.items():
-              lines.append(f"| {d['name']} | {d['price']:,.2f} | {d['chg_1d']:+.2f}% |")
-          with open(f'reports/global_{TODAY}.md','w') as f: f.write('\n'.join(lines))
-          # Bonds
-          bonds={'TLT':'20Y Treasury','IEF':'10Y Treasury','SHY':'2Y Treasury','LQD':'Corp Bonds','HYG':'High Yield'}
-          bd={}
-          for sym,name in bonds.items():
-              try:
-                  h=tz(yf.Ticker(sym).history(period='1mo'))
-                  if h.empty: continue
-                  c,p=float(h['Close'].iloc[-1]),float(h['Close'].iloc[-2])
-                  bd[sym]={'name':name,'price':round(c,2),'chg_1d':round((c-p)/p*100,2)}
-              except: pass
-          with open('data/bond_markets.json','w') as f: json.dump({'date':TODAY,'bonds':bd},f,indent=2)
-          lines=[f'# Bond Markets — {TODAY}','','| ETF | Name | 1D |','|----|------|----|']
-          for s,d in sorted(bd.items(),key=lambda x:x[1]['chg_1d'],reverse=True):
-              lines.append(f"| {s} | {d['name']} | {d['chg_1d']:+.2f}% |")
-          with open(f'reports/bonds_{TODAY}.md','w') as f: f.write('\n'.join(lines))
-          print('All macro data generated')
-          EOF
+
+      - run: python scripts/commodities.py
+      - run: python scripts/currencies.py
+      - run: python scripts/global_markets.py
+      - run: python scripts/bonds.py
 
       - name: Configure git
         run: |
@@ -102,27 +42,26 @@ jobs:
       - name: Commit macro report
         run: |
           git add reports/$(date +%Y-%m-%d).md
-          git diff --staged --quiet || git commit -m "🌍 Macro report $(date -u '+%Y-%m-%d') — yields · dollar · risk regime"
+          git diff --staged --quiet || git commit -m "🌍 Macro report $(date -u '+%Y-%m-%d') — yields · dollar · bonds"
 
       - name: Commit commodities
         run: |
           git add data/commodities.json reports/commodities_$(date +%Y-%m-%d).md
-          git diff --staged --quiet || git commit -m "🛢️ Commodities $(date -u '+%Y-%m-%d') — Gold · Oil · Silver · Wheat"
+          git diff --staged --quiet || git commit -m "🛢️ Commodities $(date -u '+%Y-%m-%d') — Gold · Oil · Silver"
 
       - name: Commit currencies
         run: |
           git add data/currencies.json
-          git diff --staged --quiet || git commit -m "💱 FX snapshot $(date -u '+%Y-%m-%d') — EUR/USD · DXY · JPY · GBP"
+          git diff --staged --quiet || git commit -m "💱 FX $(date -u '+%Y-%m-%d') — EUR/USD · DXY · JPY · GBP"
 
       - name: Commit global markets
         run: |
           git add data/global_markets.json reports/global_$(date +%Y-%m-%d).md
-          git diff --staged --quiet || git commit -m "🌐 Global markets $(date -u '+%Y-%m-%d') — S&P · Nikkei · DAX · FTSE"
+          git diff --staged --quiet || git commit -m "🌐 Global markets $(date -u '+%Y-%m-%d') — S&P · Nikkei · DAX"
 
-      - name: Commit bond markets
+      - name: Commit bonds
         run: |
           git add data/bond_markets.json reports/bonds_$(date +%Y-%m-%d).md
-          git diff --staged --quiet || git commit -m "📊 Bond markets $(date -u '+%Y-%m-%d') — TLT · HYG · LQD spread"
+          git diff --staged --quiet || git commit -m "📊 Bonds $(date -u '+%Y-%m-%d') — TLT · HYG · LQD spread"
 
-      - name: Push all commits
-        run: git push
+      - run: git push
