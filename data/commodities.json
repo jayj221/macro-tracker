@@ -1,47 +1,4 @@
 {
-  "date": "2026-04-26",
-  "commodities": {
-    "GC=F": {
-      "name": "Gold",
-      "price": 4722.3,
-      "chg_1d": 0.37,
-      "chg_3m": -7.04
-    },
-    "SI=F": {
-      "name": "Silver",
-      "price": 76.38,
-      "chg_1d": 1.22,
-      "chg_3m": -33.63
-    },
-    "CL=F": {
-      "name": "Crude Oil",
-      "price": 94.4,
-      "chg_1d": -1.51,
-      "chg_3m": 55.7
-    },
-    "NG=F": {
-      "name": "Nat Gas",
-      "price": 2.52,
-      "chg_1d": -3.48,
-      "chg_3m": -62.9
-    },
-    "ZC=F": {
-      "name": "Corn",
-      "price": 455.0,
-      "chg_1d": -0.11,
-      "chg_3m": 6.25
-    },
-    "ZW=F": {
-      "name": "Wheat",
-      "price": 608.25,
-      "chg_1d": -0.41,
-      "chg_3m": 16.41
-    },
-    "HG=F": {
-      "name": "Copper",
-      "price": 6.02,
-      "chg_1d": -0.86,
-      "chg_3m": 0.66
-    }
-  }
+  "date": "2026-04-27",
+  "commodities": {}
 }
