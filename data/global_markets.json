@@ -1,40 +1,4 @@
 {
-  "date": "2026-04-26",
-  "indices": {
-    "^GSPC": {
-      "name": "S&P 500",
-      "price": 7165.08,
-      "chg_1d": 0.8
-    },
-    "^DJI": {
-      "name": "Dow Jones",
-      "price": 49230.71,
-      "chg_1d": -0.16
-    },
-    "^IXIC": {
-      "name": "NASDAQ",
-      "price": 24836.6,
-      "chg_1d": 1.63
-    },
-    "^FTSE": {
-      "name": "FTSE 100",
-      "price": 10379.1,
-      "chg_1d": -0.74
-    },
-    "^N225": {
-      "name": "Nikkei 225",
-      "price": 59716.18,
-      "chg_1d": 0.97
-    },
-    "^GDAXI": {
-      "name": "DAX",
-      "price": 24128.98,
-      "chg_1d": -0.11
-    },
-    "^HSI": {
-      "name": "Hang Seng",
-      "price": 25978.07,
-      "chg_1d": 0.24
-    }
-  }
+  "date": "2026-04-27",
+  "indices": {}
 }
