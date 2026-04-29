@@ -1,41 +1,4 @@
 {
-  "date": "2026-04-30",
-  "fx": {
-    "EURUSD=X": {
-      "name": "EUR/USD",
-      "price": 1.1674,
-      "chg_1d": -0.42,
-      "chg_1m": 1.58
-    },
-    "GBPUSD=X": {
-      "name": "GBP/USD",
-      "price": 1.3469,
-      "chg_1d": -0.51,
-      "chg_1m": 1.75
-    },
-    "JPY=X": {
-      "name": "USD/JPY",
-      "price": 160.42,
-      "chg_1d": 0.67,
-      "chg_1m": 0.12
-    },
-    "AUDUSD=X": {
-      "name": "AUD/USD",
-      "price": 0.7112,
-      "chg_1d": -1.09,
-      "chg_1m": 3.82
-    },
-    "CADUSD=X": {
-      "name": "CAD/USD",
-      "price": 0.7307,
-      "chg_1d": -0.46,
-      "chg_1m": 1.57
-    },
-    "DX-Y.NYB": {
-      "name": "DXY Index",
-      "price": 98.946,
-      "chg_1d": 0.33,
-      "chg_1m": -1.56
-    }
-  }
+  "date": "2026-04-29",
+  "fx": {}
 }
