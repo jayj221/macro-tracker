@@ -1,8 +1,4 @@
 {
-<<<<<<< Updated upstream
-  "date": "2026-05-22",
-  "indices": {}
-=======
   "date": "2026-05-23",
   "indices": {
     "^GSPC": {
@@ -54,5 +50,4 @@
       "chg_5d": 1.78
     }
   }
->>>>>>> Stashed changes
 }
