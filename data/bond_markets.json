@@ -1,8 +1,4 @@
 {
-<<<<<<< Updated upstream
-  "date": "2026-05-22",
-  "bonds": {}
-=======
   "date": "2026-05-23",
   "bonds": {
     "TLT": {
@@ -48,5 +44,4 @@
       "chg_1m": -0.57
     }
   }
->>>>>>> Stashed changes
 }
