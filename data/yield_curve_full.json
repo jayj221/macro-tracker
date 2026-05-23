@@ -1,21 +1,21 @@
 {
-  "date": "2026-05-22",
+  "date": "2026-05-23",
   "yields": {
     "^TNX": {
       "name": "US 10Y",
-      "yield": 4.564
+      "yield": 4.558
     },
     "^IRX": {
       "name": "US 3M",
-      "yield": 3.58
+      "yield": 3.585
     },
     "^FVX": {
       "name": "US 5Y",
-      "yield": 4.232
+      "yield": 4.256
     },
     "^TYX": {
       "name": "US 30Y",
-      "yield": 5.097
+      "yield": 5.064
     }
   }
 }

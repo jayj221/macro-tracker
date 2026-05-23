@@ -1,4 +1,46 @@
 {
+<<<<<<< Updated upstream
   "date": "2026-05-22",
   "fx": {}
+=======
+  "date": "2026-05-23",
+  "fx": {
+    "EURUSD=X": {
+      "name": "EUR/USD",
+      "price": 1.1605,
+      "chg_1d": -0.18,
+      "chg_1m": -1.19
+    },
+    "GBPUSD=X": {
+      "name": "GBP/USD",
+      "price": 1.3433,
+      "chg_1d": -0.01,
+      "chg_1m": -0.57
+    },
+    "JPY=X": {
+      "name": "USD/JPY",
+      "price": 159.155,
+      "chg_1d": 0.17,
+      "chg_1m": -0.14
+    },
+    "AUDUSD=X": {
+      "name": "AUD/USD",
+      "price": 0.713,
+      "chg_1d": -0.26,
+      "chg_1m": -0.37
+    },
+    "CADUSD=X": {
+      "name": "CAD/USD",
+      "price": 0.7236,
+      "chg_1d": -0.32,
+      "chg_1m": -1.18
+    },
+    "DX-Y.NYB": {
+      "name": "DXY Index",
+      "price": 99.32,
+      "chg_1d": 0.13,
+      "chg_1m": 0.53
+    }
+  }
+>>>>>>> Stashed changes
 }

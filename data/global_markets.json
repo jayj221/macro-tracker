@@ -1,4 +1,58 @@
 {
+<<<<<<< Updated upstream
   "date": "2026-05-22",
   "indices": {}
+=======
+  "date": "2026-05-23",
+  "indices": {
+    "^GSPC": {
+      "name": "S&P 500",
+      "price": 7473.47,
+      "chg_1d": 0.37,
+      "chg_5d": 0.95
+    },
+    "^DJI": {
+      "name": "Dow Jones",
+      "price": 50579.7,
+      "chg_1d": 0.58,
+      "chg_5d": 1.8
+    },
+    "^IXIC": {
+      "name": "NASDAQ",
+      "price": 26343.97,
+      "chg_1d": 0.19,
+      "chg_5d": 0.97
+    },
+    "^FTSE": {
+      "name": "FTSE 100",
+      "price": 10466.3,
+      "chg_1d": 0.22,
+      "chg_5d": 1.38
+    },
+    "^N225": {
+      "name": "Nikkei 225",
+      "price": 63339.07,
+      "chg_1d": 2.68,
+      "chg_5d": 4.15
+    },
+    "^GDAXI": {
+      "name": "DAX",
+      "price": 24888.56,
+      "chg_1d": 1.15,
+      "chg_5d": 2.39
+    },
+    "^HSI": {
+      "name": "Hang Seng",
+      "price": 25606.03,
+      "chg_1d": 0.86,
+      "chg_5d": -0.27
+    },
+    "^AXJO": {
+      "name": "ASX 200",
+      "price": 8657.0,
+      "chg_1d": 0.41,
+      "chg_5d": 1.78
+    }
+  }
+>>>>>>> Stashed changes
 }
