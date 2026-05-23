@@ -1,8 +1,4 @@
 {
-<<<<<<< Updated upstream
-  "date": "2026-05-22",
-  "commodities": {}
-=======
   "date": "2026-05-23",
   "commodities": {
     "GC=F": {
@@ -48,5 +44,4 @@
       "chg_3m": 9.86
     }
   }
->>>>>>> Stashed changes
 }
