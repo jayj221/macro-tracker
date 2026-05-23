@@ -1,8 +1,4 @@
 {
-<<<<<<< Updated upstream
-  "date": "2026-05-22",
-  "fx": {}
-=======
   "date": "2026-05-23",
   "fx": {
     "EURUSD=X": {
@@ -42,5 +38,4 @@
       "chg_1m": 0.53
     }
   }
->>>>>>> Stashed changes
 }
