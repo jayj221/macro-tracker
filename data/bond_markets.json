@@ -1,47 +1,4 @@
 {
-  "date": "2026-05-23",
-  "bonds": {
-    "TLT": {
-      "name": "20Y Treasury",
-      "price": 84.68,
-      "chg_1d": 0.55,
-      "chg_1m": -1.8
-    },
-    "IEF": {
-      "name": "10Y Treasury",
-      "price": 93.88,
-      "chg_1d": 0.09,
-      "chg_1m": -1.24
-    },
-    "SHY": {
-      "name": "2Y Treasury",
-      "price": 82.12,
-      "chg_1d": -0.02,
-      "chg_1m": -0.14
-    },
-    "LQD": {
-      "name": "Corp Bonds",
-      "price": 108.37,
-      "chg_1d": 0.18,
-      "chg_1m": -0.66
-    },
-    "HYG": {
-      "name": "High Yield",
-      "price": 79.91,
-      "chg_1d": 0.01,
-      "chg_1m": -0.05
-    },
-    "EMB": {
-      "name": "Emerging Mkt",
-      "price": 95.17,
-      "chg_1d": 0.19,
-      "chg_1m": -0.37
-    },
-    "TIP": {
-      "name": "TIPS",
-      "price": 110.38,
-      "chg_1d": 0.01,
-      "chg_1m": -0.57
-    }
-  }
+  "date": "2026-05-25",
+  "bonds": {}
 }
